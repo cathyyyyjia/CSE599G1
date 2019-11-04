@@ -5,7 +5,7 @@ class ResNetBlock(LayerUsingLayer):
     def __init__(self, conv_params, parent=None):
         super(ResNetBlock, self).__init__(parent)
         self.conv_layers = SequentialLayer([ConvLayer(*conv_params), ReLULayer(), ConvLayer(*conv_params)], self.parent)
-        self.add_layer = AddLayer(self.conv_layers)
+        self.add_layer = AddLayer((self.conv_layers, self.parent))
         self.relu2 = ReLULayer(self.add_layer)
         assert not any([parent is None for parent in self.conv_layers.parents])
         assert not any([parent is None for parent in self.add_layer.parents])
@@ -21,7 +21,7 @@ class ResNetBlock(LayerUsingLayer):
     def forward(self, data):
         # TODO
         self.data = data
-        out = self.conv_layers(data)
-        out = self.add_layer([out, data])
-        out = self.final_layer(out)
-        return out
+        output = self.conv_layers(data)
+        output = self.add_layer([output, data])
+        output = self.final_layer(output)
+        return output

@@ -58,12 +58,28 @@ class MNISTResNetwork(Network):
     def __init__(self):
         self.layers = layers.SequentialLayer(
             [
-                layers.ConvLayer(1, 6, 5),
+                # layers.ConvLayer(1, 6, 5),
+                # layers.MaxPoolLayer(2, 2),
+                # layers.ReLULayer(),
+                # layers.ConvLayer(6, 16, 5),
+                # ResNetBlock((16, 16, 3, 1)),
+                # ResNetBlock((16, 16, 3, 1)),
+                # layers.MaxPoolLayer(2, 2),
+                # layers.ReLULayer(),
+                # layers.FlattenLayer(),
+                # layers.LinearLayer(16 * 7 * 7, 120),
+                # layers.ReLULayer(),
+                # layers.LinearLayer(120, 84),
+                # layers.ReLULayer(),
+                # layers.LinearLayer(84, 10),
+
+                layers.TorchConvLayer(1, 16, 5),
                 layers.MaxPoolLayer(2, 2),
                 layers.ReLULayer(),
-                layers.ConvLayer(6, 16, 5),
                 ResNetBlock((16, 16, 3, 1)),
-                ResNetBlock((16, 16, 3, 1)),
+                # ResNetBlock((16, 16, 3, 1)),
+                # ResNetBlock((16, 16, 3, 1)),
+                # ResNetBlock((16, 16, 3, 1)),
                 layers.MaxPoolLayer(2, 2),
                 layers.ReLULayer(),
                 layers.FlattenLayer(),
@@ -126,5 +142,5 @@ if __name__ == "__main__":
     test_data = test_data[:, np.newaxis, ...]
     test_labels = test_dataset["labels"]
 
-    network = MNISTNetwork()
+    network = MNISTResNetwork()
     train(train_data, train_labels, test_data, test_labels, network)

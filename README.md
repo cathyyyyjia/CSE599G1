@@ -30,5 +30,6 @@ git pull origin master
 ```
 
 ## [Homework 1. Making Your First Neural Network](hw1) - Due 10/16/19 3:29PM
-## [Homework 2. Convolutional Neural Networks](hw2) - Due 10/30/19 3:29PM
+## [Homework 2. Convolutional Neural Networks](hw2) - Due 11/6/19 3:29PM
+## [Homework 3. Recurrent Neural Networks](hw3) - Due 11/15/19 3:29PM
 
